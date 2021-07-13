@@ -1,6 +1,7 @@
 import perlin  # https://github.com/Nycto/PerlinNim
 import random, math
 import chroma, vmath, pixie  # https://github.com/treeform
+from strutils import align
 
 randomize()
 
@@ -77,10 +78,10 @@ if isMainModule:
     font.size = 64
     var image_scale = 0.0015  # Closer to 0 scales larger.
     let img_size = vec2(1024.0, 1024.0)
-    for octave in 0..12:
+    for octave in 1..12:
         for persist in 1..20:
             var p = round(persist.toFloat * 0.05, 2)
-            var fname = "octaves - " & $octave & " - persistence - " & $persist & ".png"
+            var fname = "octaves - " & align($octave, 2, '0') & " - persistence - " & align($persist, 2, '0') & ".png"
             var text = "octaves: " & $octave & " persistence: " & $p
             echo text
             var i = build_image(img_size, octave, p, image_scale)
